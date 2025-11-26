@@ -1,0 +1,70 @@
+%!TEX root = ../Pflichtenheft.tex
+
+\chapter{Definition of Objectives}
+
+The initial public release of \textit{ChatGPT} by \textit{Openabr} in November 2022 was the start of publicly available and free generative \hyperref[abr:AI]{AI} products. Since then, a variety of \textit{Large Language Models (\hyperref[abr:LLM]{LLM}s)} have been released and updated by a number of different organizations. Due to their extensive availability, these models have been rapidly adopted in a variety of applications across many facets of human life. As \hyperref[abr:LLM]{LLM}s have become more powerful, one common use case of them has become the automatic generation of source code based on natural language input. \newline
+Generating code samples of small to medium size code snippets for prominent languages like \textit{Java} or \textit{C} is an effective strategy that is widely employed.
+However, \textit{\hyperref[abr:LLM]{LLM}s} continue to encounter challenges in handling \textit{Domain Specific Languages (\hyperref[abr:DSL]{DSL}s)}. \textit{\hyperref[abr:DSL]{DSL}s} are programming languages, configuration formats or embeddings into more common programming languages that are only used in very specific scenarios or industries. Common examples of niche \textit{\hyperref[abr:DSL]{DSL}s} are \textit{nginx configurations}, \textit{R} or \textit{Gradle scripts}. \newline
+This is particulary evident for \textit{\hyperref[abr:DSL]{DSL}s} that are used for hardware description, \hyperref[abr:PLC]{PLC} control, and low-level machine programming. Due to being specific for hardware, proprietary or limited to products of a company, these languages are only sparsely included in the training data for \textit{\hyperref[abr:LLM]{LLM}s}. \newline
+Solving this issue is the objective of the \textbf{CodeX} system. \textbf{CodeX} aims to allow users to generate \textit{\hyperref[abr:DSL]{DSL}} source code from natural language, specifically the \textit{\hyperref[abr:SPICE]{SPICE} netlist} syntax that is used to describe electronic circuits. It will also assist the user to interpret the generated circuit description by providing visualization. The backing \textit{\hyperref[abr:LLM]{LLM}} will be supported by a database of examples of that \textit{\hyperref[abr:DSL]{DSL}}.
+
+
+\section{Must Criteria}\label{sec:must-criteria}
+\textbf{Must Criteria} describe aspects of the system that have to be present in order for the program to be usable on a basic level.
+
+\must{1}{The system must provide a web interface that allows to convert natural language into a snipped of code. The target \textit{\hyperref[abr:DSL]{DSL}} can be selected out of options, and the generated code can be exported as a file.}
+\must{2}{The system must provide \textit{\hyperref[abr:SPICE]{SPICE}} as one option of it's selectable \textit{\hyperref[abr:DSL]{DSL}s}.}
+\must{3}{\textit{\hyperref[abr:SPICE]{SPICE}} conversations must have a visualization of the respective circuit.}
+\must{4}{Every conversation must have a name.}
+\must{5}{The system must support the requests to the \textit{\hyperref[abr:LLM]{LLM}} using a \textbf{\hyperref[abr:RAG]{RAG}} approach. The data that is retrieved must be stored on a secure database that respects \textbf{\hyperref[abr:IP]{IP} property}.}
+\must{6}{The system must integrate a validation backend to validate the generated circuit for \textit{\hyperref[abr:SPICE]{SPICE}} conversations.}
+\must{7}{The system must allow adding/removing seperate \textit{\hyperref[abr:LLM]{LLM}} models together with their \textit{OpenAI API} URL. When a request is made, the user should be able to select the model with which the request will be performed.}
+
+\section{Should Criteria}\label{sec:should-criteria}
+\textbf{Should Criteria} describe aspects of the system that are not essential to a basic usage of the system, but should be fulfilled to meet the projects initial objectives.
+
+\should{1}{The circuit visualization for \textit{\hyperref[abr:SPICE]{SPICE}} should be interactive.}
+\should{2}{The interface of the system should allow to cancel a pending request.}
+\should{3}{Users can sign up, login and logout of accounts using a username (or email) and password.}
+\should{4}{A strict password complexity policy should be implemented, requiring a minimum length and a mix of uppercase, lowercase, numeric, and special characters.}
+\should{5}{The system should allow users to securely update their email, username and profile picture.}
+\should{6}{The system should provide a secure mechanism for users to recover their accounts in case of lost credentials.}
+\should{7}{Conversations are saved with respect to the account that created them, and are only visible to that account.}
+\should{8}{If the \textit{\hyperref[abr:LLM]{LLM}} fails to generate working code after multiple retries, the system should stop further attempts after a reasonable timeout and display an error message indicating the failure to generate the requested code.}
+\should{9}{The system should provide a list of all previous conversations and allow to view them.}
+\should{10}{Every conversation should be able to be marked as deleted, and won't be shown in the overview after that.}
+
+\newpage
+\section{Could Criteria}\label{sec:could-criteria}
+\textbf{Could Criteria} describe aspects of the system that add onto the originally specified targets of the system and are not required.
+
+\could{1}{The system could integrate a simulation backend to simulate the generated circuit for \textit{\hyperref[abr:SPICE]{SPICE}} conversations.}
+\could{2}{The system could accept follow-up instructions on conversations.}
+\could{3}{The system could provide more \textit{\hyperref[abr:DSL]{DSL}} options than only \textit{\hyperref[abr:SPICE]{SPICE}}.}
+\could{4}{Every account could be associated to one of the roles \textbf{\hyperref[def:admin]{Admin}}, \textbf{\hyperref[def:user]{User}} or \textbf{\hyperref[def:guest]{Guest}}. Every role could have a specified upper bound of requests per month than could be set as a server parameter.}
+\could{5}{The role request upper bounds could be set from admins via the web interface.}
+\could{6}{The web interface could be offered in multiple languages, at least \textit{german} and \textit{englisch}.}
+\could{7}{Prettify output via syntax highlighting, if format allows it.}
+\could{8}{The frontend could allow users to pin a conversation so that it remains at the top of the conversation list.}
+\could{9}{During registration, the user's email could be confirmed by sending a verification link or code. Registration would not be completed until the email is confirmed. When the user would change their email, a new email confirmation would automatically be issued.}
+\could{10}{The system could support \hyperref[def:oauth]{OAuth} 2.0 authentication to allow users to log in easily using existing accounts from trusted providers, such as Google.}
+\could{11}{The software could provide a dark mode or other customizable interface themes.}
+\could{12}{The system could integrate with cloud storage providers to save or share generated code snippets.}
+\could{13}{The app could allow users to search conversations by name to quickly locate specific conversations.}
+\could{14}{The frontend could display a progress indicator for generating code.}
+\could{15}{The software could allow users to download generated code as a file.}
+\could{16}{The software could provide admin-only analytics on usage, such as daily active users, which are not visible to regular users.}
+\could{17}{Users could upload and display a profile picture associated with their account.}
+
+\newpage
+
+\section{Won't Criteria}\label{sec:wont-critaria}
+\textbf{Won't Criteria} describe aspects that are not planned to be included in the system.
+
+\wont{1}{A user manual won't be delivered.}
+\wont{2}{The circuit visualization for \textit{\hyperref[abr:SPICE]{SPICE}} conversations does not allow editing the circuit.}
+\wont{3}{User cannot attach images or files to their prompt and can only provide text input.}
+\wont{4}{The application won't support real-time collaboration between multiple users in the same conversation.}
+\wont{5}{The application won't provide mobile apps access is only via the web interface.}
+\wont{6}{Voice input or voice-based commands won't be included in the software.}
+\wont{7}{The application won't use interactions with users to train or improve the \textit{\hyperref[abr:LLM]{LLM}}.}

@@ -1,0 +1,34 @@
+<mxfile host="drawio-plugin" modified="2025-11-25T12:32:24.678Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" version="22.1.22" etag="FNh5BE909OQzohZ8D4kP" type="embed">
+  <diagram id="M7c6ek7h_ir9x0RAX0sk" name="Page-1">
+    <mxGraphModel dx="879" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="7" target="11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="7" target="12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="7" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="User" style="shape=umlActor;html=1;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="330" y="345" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Settings" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;recursiveResize=0;container=1;collapsible=0;width=160;" vertex="1" parent="1">
+          <mxGeometry x="60" y="240" width="200" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="Add LLM" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="8">
+          <mxGeometry x="30" y="60" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Remove LLM" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="8">
+          <mxGeometry x="30" y="120" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Edit LLM" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="8">
+          <mxGeometry x="30" y="190" width="120" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

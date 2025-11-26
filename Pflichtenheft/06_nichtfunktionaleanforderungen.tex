@@ -1,0 +1,21 @@
+%!TEX root = ../Pflichtenheft.tex
+
+% Kapitel 6
+%-------------------------------------------------------------------------------
+
+\chapter{Quality criteria}
+\textbf{Quality criteria} describe the way that the proposed must-, should- and could criteria get implemented. Quality criteria are not visible to the immediate user, but deal with topics like legal regulations, data privacy, security or safety.
+
+\qualityReq{10}{\hyperref[abr:SQL]{SQL} injection or any other form of database injection \textbf{must not} be possible.}
+\qualityReq{20}{No personally identifiable information (\textit{\hyperref[abr:PII]{PII}}) must be shared with external services.}
+\qualityReq{30}{The code generation must not take longer than 20 seconds.}
+\qualityReq{40}{All user passwords should only be persisted using a secure, one-way hashing algorithm.}
+\qualityReq{50}{The system should limit concurrent requests per user to prevent overloading the server.}
+\qualityReq{60}{All server-side logging should be performed using a logging framework to ensure structured logs, maintainability, and effective debugging.}
+\qualityReq{70}{The frontend should handle all operations without runtime errors, ensuring that users do not encounter unhandled exceptions or crashes during normal use.} 
+\qualityReq{80}{The frontend should not produce any errors in the browser console during normal operation, ensuring a stable and reliable user experience.}
+\qualityReq{90}{All communication between frontend and backend should be encrypted (e.g., using \hyperref[abr:HTTP]{HTTP}S) to ensure data security.}
+\qualityReq{100}{The system could be deployable using containerization, such as \textit{Docker}.}
+\qualityReq{110}{The system could allow integration with \hyperref[abr:CI/CD]{CI/CD} pipelines to automatically test or deploy generated code.}
+\qualityReq{120}{The interface of the system should be responsive on the display sizes \textit{Mobile Phone}, \textit{Tablet} and \textit{Desktop}. It should also be accessible.}
+\qualityReq{130}{The \textit{\hyperref[abr:LLM]{LLM}} and \textit{Database} should be stored on a secure server and can only be accessed by authorized actors.}
