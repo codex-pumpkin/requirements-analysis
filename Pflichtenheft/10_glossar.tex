@@ -7,14 +7,13 @@
 \subsection{User-Roles}
 \begin{description}[style=nextline, labelwidth=0pt, labelsep=0pt, leftmargin=0pt]
 \setlength{\itemsep}{1em}
-  \item[\textbf{\textit{Guest}}] \phantomsection\label{def:guest}
-    A user who has not logged in and has only limited access to the system. Guests can explore basic features and perform a small number of requests without an account.
-    
-  \item[\textbf{\textit{User}}] \phantomsection\label{def:user}
-    A registered and authenticated user with access to the system's core features. Users can view their request history, interact with personal data, and perform a moderate number of requests.
+  \item[\textbf{\textit{User}}] \phantomsection\label{def:member}
+    A registered and authenticated user with access to the system's core features.
+    \item Users can view their request history, interact with personal data and perform a moderate number of requests.
 
   \item[\textbf{\textit{Admin}}] \phantomsection\label{def:admin}
-    A privileged user with full administrative access to system settings. Admins can view system statistics, adjust configuration and quotas, and perform an unlimited number of requests.
+    A privileged user with full administrative access to system settings.
+    \item Admins can view system statistics and adjust configuration and quotas.
 
 \end{description}
 
@@ -22,10 +21,10 @@
 \subsection{General Definitions}
 \begin{description}[style=nextline, labelwidth=0pt, labelsep=0pt, leftmargin=0pt]
   \item[\textbf{\textit{OAuth}}] \phantomsection\label{def:oauth}
-  OAuth (Open Authorization) ist ein Standardprotokoll für die Autorisierung, das es Apps ermöglicht, auf geschützte Nutzerdaten zuzugreifen, ohne dass die Anmeldedaten (Passwörter) des Nutzers geteilt werden müssen. Stattdessen wird ein temporäres Zugriffstoken verwendet, das der Nutzer autorisiert, und das bestimmt, welche Ressourcen die App nutzen darf. 
+  OAuth (Open Authorization) is a standard authorization protocol that allows apps to access protected user data without having to share the user's log-in details (passwords). Instead, a temporary access token is used to authorize the user and determine which resources the app is allowed to use.
 
   \item[\textbf{\textit{RAG}}] \phantomsection\label{def:rag}
-RAG is a framework for Retrieval-Augmented Generation, an \hyperref[abr:AI]{AI} approach that enhances large language models (\hyperref[abr:LLM]{LLMs}) by combining them with an external knowledge base. Instead of relying solely on their training data, \hyperref[abr:RAG]{RAG} models first retrieve relevant information from a specific source, such as a company's internal documents, before generating a response, leading to more accurate, up-to-date, and contextually relevant answers without retraining the \hyperref[abr:LLM]{LLM}.  
+RAG is a framework for Retrieval-Augmented Generation, an \hyperref[abr:AI]{AI} approach that enhances large language models (\hyperref[abr:LLM]{LLMs}) by combining them with an external knowledge base. Instead of relying solely on their training data, \hyperref[abr:RAG]{RAG} models first retrieve relevant information from a specific source, such as a company's internal documents, before generating a response, leading to more accurate, up-to-date and contextually relevant answers without retraining the \hyperref[abr:LLM]{LLM}.
   
   \item[\textbf{\textit{Relational Database}}] \phantomsection\label{def:relational-database}
   A relational database is a type of database that organizes data into rows and columns, which collectively form a table where the data points are related to each other. Data is typically structured across multiple tables, which can be joined together via a primary key or a foreign key.
@@ -53,7 +52,7 @@ RAG is a framework for Retrieval-Augmented Generation, an \hyperref[abr:AI]{AI} 
 \item[\textbf{HTTP}]\phantomsection\label{abr:HTTP} - Hypertext Transfer Protocol
 \item[\textbf{HTTPS}]\phantomsection\label{abr:HTTPS} - Hypertext Transfer Protocol Secure
 \item[\textbf{IP}]\phantomsection\label{abr:IP} - Internet Protocol 
-\item[\textbf{LLM}]\phantomsection\label{abr:LLM} - Large Languange Model
+\item[\textbf{LLM}]\phantomsection\label{abr:LLM} - Large Language Model
 \item[\textbf{Mbit/s}]\phantomsection\label{abr:Mbit/s} - Megabit per second
 \item[\textbf{PII}]\phantomsection\label{abr:PII} - Personally Identifiable Information
 \item[\textbf{PLC}]\phantomsection\label{abr:PLC} - Programmable Logic Controller

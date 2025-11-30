@@ -1,36 +1,48 @@
 %!TEX root = ../Pflichtenheft.tex
 
-\chapter{Produktdaten}
-\label{chap:product_data}
+\chapter{Product Data}
+The following describes what external data is persisted by the system.
 
-Die langfristig zu speichernden Daten sind aus Benutzersicht detaillierter zu
-beschreiben. Dabei bietet sich eine formale Beschreibung an, um eine größere Präzisierung zu erreichen.
-Es sollte eine Menge an erwarteten Daten angegeben werden.
-
-Es kann die Darstellung gemäß Beispiel verwendet werden (alternativ kann auch ein Klassendiagramm mit entsprechender Beschreibung erstellt werden):\\
-
-\begin{data}{10}{Lagerdaten}
-	Daten der Lagerplätze (max. 5.000):\\
-	-  Modulnummer,\\
-	-  Regalseite,\\
-	-  Regalspalte,\\
-	-  Regalzeile,\\
-	-  Fachhöhe,\\
-	-  Platzsperre (0 = nicht gesperrt, 1 = gesperrt für Einlagerung, 2 = gesperrt
-	   für Auslagerung, 3 = gesperrt für alle Zugriffe),\\
-	-  Reifenstatus (0 = frei,1 = reserviert für Einlagerung, 2= belegt, 3 =
-	   reserviert für Auslagerung),\\
-	-  Reifenseriennummer.\\
+\begin{data}{10}{Data per account}
+	\begin{itemize}
+		\item Date of signup
+		\item Username
+		\item Email
+		\item One-Way encrypted password
+		\item Profile picture
+		\item Role
+		\item UI theme
+		\item Email verification status
+		\item Language model configurations:
+		\begin{itemize}
+				  \item Name
+				  \item OpenAPI endpoint
+		\end{itemize}
+	\end{itemize}
 \end{data}
 
-\begin{data}{20}{Moduldaten}
-	Daten der Module (max. 20):\\
-	-  Modulnummer,\\
-	-  Sperrkennzeichen (0 = nicht gesperrt, 1 = gesperrt für Einlagerung, 2 =
-	   gesperrt für Auslagerung, 3 = gesperrt für alle Zugriffe),\\
-	-  maximale Kapazität,\\
-	-  freie Kapazität,\\
-	-  belegte Plätze (ergibt sich aus Status und Zahl der zugeordneten
-	   Lagerplätze, wird aus Geschwindigkeitsgründen allerdings redundant
-	   mitgeführt).
+\begin{data}{20}{Authentication Data}
+	\begin{itemize}
+		\item Active, expired and invalidated sessions
+	\end{itemize}
+\end{data}
+
+\begin{data}{30}{Data per conversation}
+	\begin{itemize}
+		\item Date of creation
+		\item Name
+		\item User-sent requests
+		\item LLM-sent responses
+		\item Owner account
+		\item Used language model
+		\item Used target language
+		\item Whether it is pinned
+		\item Validation result
+	\end{itemize}
+\end{data}
+
+\begin{data}{40}{Global Data}
+	\begin{itemize}
+		\item Maximum requests per role
+	\end{itemize}
 \end{data}

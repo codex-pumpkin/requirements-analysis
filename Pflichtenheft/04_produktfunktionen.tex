@@ -6,20 +6,25 @@ Product functions are a more concrete description of the functions used in the u
 Each product function will be assigned to one or multiple must-, should- or could requirements.
 \newline
 \newline
-\textbf{Note:} The actors follow a hierarchical relation defined as \textit{\hyperref[def:guest]{Guest} < \hyperref[def:user]{User} < \hyperref[def:admin]{Admin}}. 
-This means that if a product function is assigned to a certain actor (e.g., \textit{\hyperref[def:guest]{Guest}}), 
-it can also be performed by all actors of higher levels (in this case, \textit{\hyperref[def:user]{User}} and \textit{\hyperref[def:admin]{Admin}}).
+\textbf{Note:} The actors follow a hierarchical relation defined as follows:
+\begin{enumerate}
+    \item \textbf{Unauthenticated User:} User not logged in any account
+	\item \textbf{Unverified User:} User logged in an account, whose email is not verified
+	\item \textbf{Member:} User logged in an account with the \hyperref[def:member]{Member} role
+	\item \textbf{Admin:} User logged in an account with the \hyperref[def:admin]{Admin} role
+\end{enumerate}
+This means that if a product function is assigned to a certain actor, it is also accessible for every actor with a higher hierarchical state.
 
 \vspace{3.5em}
 
 \begin{function}{10}{Authenticate via \hyperref[def:oauth]{OAuth} provider}
 	\item[Use case:] Authenticate via \hyperref[def:oauth]{OAuth} provider
 	\item[Criteria:]~\ref{RC10}
-	\item[Target:] The user is logged into an account, and was authenticated via an external provider like \textit{Google}.
+	\item[Target:] The user is logged into an account and was authenticated via an external provider like \textit{Google}.
 	\item[Precondition:] The user is not logged in.
-	\item[Postcondition failure:] The user is still logged out, or no new account was created.
-	\item[Actors:] \hyperref[def:guest]{Guest}
-	\item[Trigger:] The user clicks the option to login/signup with an external provider on the Login or Signup screen.
+	\item[Post-condition failure:] The user is still logged out, or no new account was created.
+	\item[Actors:] Unauthenticated User
+	\item[Trigger:] The user clicks the option to log in/sign up with an external provider on the log-in or sign-up screen.
 	\item[Description:] ~
 	\begin{enumerate}
 		\item User clicks option to authenticate with external provider.
@@ -30,7 +35,6 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	See also~\ref{subsubsec:authenticate-with-oauth}.
 \end{function}
 
-\newpage
 \vspace{2.0em}
 
 \begin{function}{20}{Log in with credentials}
@@ -38,16 +42,17 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Criteria:]~\ref{RS3}
 	\item[Target:] The user is logged into an existing account.
 	\item[Precondition:] The user is not logged in.
-	\item[Postcondition failure:] The user is still logged out.
-	\item[Actors:] \hyperref[def:guest]{Guest}
-	\item[Trigger:] The user clicks the login button on the Login screen.
+	\item[Post-condition failure:] The user is still logged out.
+	\item[Actors:] Unauthenticated User
+	\item[Trigger:] The user clicks the log-in button on the log-in screen.
 	\item[Description:] ~
 	\begin{enumerate}
-		\item User enters credentials on the Login screen.
-		\item User clicks the login button on the Login screen.
-		\item System validates the credentials, authenticated the user and redirects to the main page.
+		\item User enters credentials on the log-in screen.
+		\item User clicks the log-in button on the log-in screen.
+		\item System validates the credentials, authenticates the user and redirects to the main page.
 	\end{enumerate}
 \end{function}
+
 \vspace{2.0em}
 
 \begin{function}{30}{Sign up with credentials}
@@ -55,25 +60,25 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Criteria:]~\ref{RS3},~\ref{RS4}
 	\item[Target:] The user is logged into a new account.
 	\item[Precondition:] The user is not logged in.
-	\item[Postcondition failure:] The user is still logged out, or no account was created.
-	\item[Actors:] \hyperref[def:guest]{Guest}
-	\item[Trigger:] The user clicks the signup button on the Signup screen.
+	\item[Post-condition failure:] The user is still logged out, or no account was created.
+	\item[Actors:] Unauthenticated User
+	\item[Trigger:] The user clicks the sign-up button on the sign-up screen.
 	\item[Description:] ~
 \begin{enumerate}
-	\item User enters new credentials on the Signup screen.
-	\item User clicks the signup button on the Signup screen.
+	\item User enters new credentials on the sign-up screen.
+	\item User clicks the sign-up button on the sign-up screen.
 	\item System creates new account and requires the user to verify the email address.
 \end{enumerate}
 \end{function}
-\newpage
+
 \vspace{2.0em}
 
 \begin{function}{40}{Change email}
 	\item[Use case:] Change email
 	\item[Criteria:]~\ref{RS5}
 	\item[Target:] The email address of the user is updated and the user marked as unverified.
-	\item[Postcondition failure:] The email address of the user is still the old one.
-	\item[Actors:] \hyperref[def:user]{User}
+	\item[Post-condition failure:] The email address of the user is still the old one.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user clicks the change email button in the account dialog.
 	\item[Description:] ~
 	\begin{enumerate}
@@ -83,6 +88,7 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 		\item The user is logged out.
 	\end{enumerate}
 \end{function}
+
 \vspace{2.0em}
 
 \begin{function}{50}{Verify email address}
@@ -90,8 +96,8 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Criteria:]~\ref{RC9}
 	\item[Target:] The email address of the user is verified.
 	\item[Precondition:] The email address of the user is not yet verified.
-	\item[Postcondition failure:] The email address of the user is not verified.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Post-condition failure:] The email address of the user is not verified.
+	\item[Actors:] Unverified user
 	\item[Trigger:] The user signs up or changes the email address.
 	\item[Description:] ~
 	\begin{enumerate}
@@ -101,7 +107,7 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\end{enumerate}
 	See also~\ref{subsubsec:verify-email-address}.
 \end{function}
-\newpage
+
 \vspace{2.0em}
 
 
@@ -109,9 +115,9 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Use case:] Reset password
 	\item[Criteria:]~\ref{RS6},~\ref{RC9}
 	\item[Target:] The password of the account is changed.
-	\item[Postcondition failure:] The password of the account was not changed.
-	\item[Actors:] \hyperref[def:user]{User}
-	\item[Trigger:] The user clicks the reset password button in the account dialog or the login screen.
+	\item[Post-condition failure:] The password of the account was not changed.
+	\item[Actors:] \hyperref[def:member]{Member}
+	\item[Trigger:] The user clicks the reset password button in the account dialog or the log-in screen.
 	\item[Description:] ~
 	\begin{enumerate}
 		\item The user requests the password reset message to be sent to their email address.
@@ -127,9 +133,9 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Use case:] Change username
 	\item[Criteria:]~\ref{RS5}
 	\item[Target:] The username of the account is changed.
-	\item[Postcondition failure:] The username of the account was not changed.
-	\item[Actors:] \hyperref[def:user]{User}
-	\item[Trigger:] The user clicks the change username button in the change username dialog.
+	\item[Post-condition failure:] The username of the account was not changed.
+	\item[Actors:] \hyperref[def:member]{Member}
+	\item[Trigger:] The user clicks the change-username button in the change username dialog.
 	\item[Description:] ~
 	\begin{enumerate}
 		\item The user enters the new username in the change username dialog.
@@ -137,19 +143,19 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 		\item The system updates the username of the account.
 	\end{enumerate}
 \end{function}
-\newpage
+
 \vspace{2.0em}
 
 \begin{function}{80}{Log out}
 	\item[Use case:] Log out
 	\item[Criteria:]~\ref{RS3}
 	\item[Target:] The current session of the user is invalidated.
-	\item[Postcondition failure:] The current session of the user is still active.
-	\item[Actors:] \hyperref[def:user]{User}
-	\item[Trigger:] The user clicks the logout button in the account dialog.
+	\item[Post-condition failure:] The current session of the user is still active.
+	\item[Actors:] \hyperref[def:member]{Member}
+	\item[Trigger:] The user clicks the log-out button in the account dialog.
 	\item[Description:] ~
 	\begin{enumerate}
-		\item The user clicks the logout button in the account dialog.
+		\item The user clicks the log-out button in the account dialog.
 		\item The system invalidates the current session of the user.
 	\end{enumerate}
 \end{function}
@@ -159,8 +165,8 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Use case:] Change profile picture
 	\item[Criteria:]~\ref{RC17}
 	\item[Target:] The profile picture of the account is changed.
-	\item[Postcondition failure:] The profile picture of the account is still the old one.
-	\item[Actors:] \hyperref[def:user]{User}
+	\item[Post-condition failure:] The profile picture of the account is still the old one.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user clicks the profile picture in the account dialog.
 	\item[Description:] ~
 	\begin{enumerate}
@@ -175,66 +181,67 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Use case:] Start conversation
 	\item[Criteria:]~\ref{RM1},~\ref{RM5},~\ref{RS2},~\ref{RS7},~\ref{RS8},~\ref{RM6},~\ref{RC1},~\ref{RC14}
 	\item[Target:] A new conversation is started by sending an initial code description to an \textit{LLM}.
-	\item[Postcondition failure:] No new conversation is started, or no code was generated.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Post-condition failure:] No new conversation is started, or no code was generated.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user sent a prompt from the main page.
 	\item[Description:] ~
 	\begin{enumerate}
-		\item The user sent a prompt from the main page.
+		\item The user sends a prompt from the main page.
 		\item The system augments the prompt using the documents stored in the vector database.
 		\item Until a validated response is received, or until a maximum number of reties has been reached, the system sends the augmented prompt to the \textit{LLM}.
 		\item The code, or an error, is presented to the user.
 	\end{enumerate}
 	See also~\ref{subsubsec:start-conversation}.
 \end{function}
-\vspace{2.0em}
+\vspace{2.5em}
 
 \begin{function}{110}{Select target language}
 	\item[Use case:] Select target language
 	\item[Criteria:]~\ref{RM2},~\ref{RC3}
 	\item[Target:] A target language was selected for the coming conversation.
-	\item[Postcondition failure:] No target language was selected.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Post-condition failure:] No target language was selected.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user selected a target language on the main page.
 	\item[Description:] ~
 	The user selects a target language from the language dropdown on the main page.
 \end{function}
-\vspace{2.0em}
+
+\vspace{2.5em}
 
 \begin{function}{120}{Select language model}
 	\item[Use case:] Select language model
 	\item[Criteria:]~\ref{RM7}
 	\item[Target:] A language model was selected for the coming conversation.
-	\item[Postcondition failure:] No language model was selected.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Post-condition failure:] No language model was selected.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user selected a language model on the main page.
 	\item[Description:] ~
 	The user selects a language model from the language dropdown on the main page.
 \end{function}
-\vspace{2.0em}
 
-\begin{function}{130}{Add or update language model}
-	\item[Use case:] Add LLM/Update LLM
+\begin{function}{130}{Add or update language model configuration}
+	\item[Use case:] Add LLM/Update LLM config
 	\item[Criteria:]~\ref{RM7}
-	\item[Target:] An LLM was added or updated.
-	\item[Postcondition failure:] The LLM was not created or updated.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Target:] An LLM config was added or updated.
+	\item[Post-condition failure:] The LLM config was not created or updated.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user visited the settings view.
 	\item[Description:] ~
 	The user either adds a new LLM configuration by entering the name and \textit{URL}, or updates either of the attributes.
 \end{function}
 
-\begin{function}{140}{Delete language model}
-	\item[Use case:] Delete LLM
+\vspace{2.0em}
+
+\begin{function}{140}{Delete language model configuration}
+	\item[Use case:] Delete LLM config
 	\item[Criteria:]~\ref{RM7}
-	\item[Target:] An LLM configuration was deleted.
-	\item[Postcondition failure:] The LLM config still exists.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Target:] An LLM config was deleted.
+	\item[Post-condition failure:] The LLM config still exists.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user visited the settings view.
 	\item[Description:] ~
-	The user selects the LLM config to delete, and clicks the delete button.
+	The user selects the LLM config to delete and clicks the delete button.
 \end{function}
-\vspace{2.0em}
 
 \vspace{2.0em}
 
@@ -242,8 +249,8 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 	\item[Use case:] Pin conversation
 	\item[Criteria:]~\ref{RC8}
 	\item[Target:] A conversation was pinned.
-	\item[Postcondition failure:] The conversation was not pinned.
-	\item[Actors:] \hyperref[def:user]{User}
+	\item[Post-condition failure:] The conversation was not pinned.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user hovers over a conversation on the navigation bar on the main page.
 	\item[Description:] ~
 	\begin{enumerate}
@@ -251,78 +258,84 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 		\item The user clicks the pin menu option on the menu.
 	\end{enumerate}
 \end{function}
-\vspace{1.5em}
+
+\vspace{2.0em}
 
 \begin{function}{160}{View previous conversation}
 	\item[Use case:] View previous conversation, View visualization of code
 	\item[Criteria:]~\ref{RM3},~\ref{RS1},~\ref{RS7},~\ref{RS9},~\ref{RC2},~\ref{RC7},~\ref{RC13}
 	\item[Target:] The user observed and performed actions on a conversation.
-	\item[Postcondition failure:] The conversation was not shown.
-	\item[Actors:] \hyperref[def:user]{User}
+	\item[Post-condition failure:] The conversation was not shown.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user selects a conversation from the left sidebar or waits for a conversation to be finished.
 	\item[Description:] ~
 	The user observes the code that was generated by the \textit{LLM}. \newline
 	If the target language allows visualization, the user can select to view the visualization.
 	The user can pose follow-up prompts on the conversations.
 \end{function}
-\vspace{1.5em}
+
+\vspace{2.0em}
 
 \begin{function}{170}{Export code to file}
 	\item[Use case:] Export code to file
 	\item[Criteria:]~\ref{RM1},~\ref{RC15}
 	\item[Target:] The generated code was downloaded as a file.
-	\item[Postcondition failure:] The file was not downloaded.
-	\item[Actors:] \hyperref[def:user]{User}
-	\item[Trigger:] The user clicks the download button on a code snipped of a conversation.
+	\item[Post-condition failure:] The file was not downloaded.
+	\item[Actors:] \hyperref[def:member]{Member}
+	\item[Trigger:] The user clicks the download button on a code snippet of a conversation.
 	\item[Description:] ~
-	The user clicks the download button on a code snipped, and the browser loads the file into the users downloads directory.
+	The user clicks the download button on a code snippet and the browser loads the file into the users downloads directory.
 \end{function}
+
 \vspace{2.0em}
 
 \begin{function}{180}{Change theme}
 	\item[Use case:] Change theme
 	\item[Criteria:]~\ref{RC11}
 	\item[Target:] The theme of the interface is toggled.
-	\item[Postcondition failure:] The theme is not toggled.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Post-condition failure:] The theme is not toggled.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user clicks the theme toggle button in the sidebar.
 	\item[Description:] ~
 	The user clicks the theme toggle button in the sidebar.
 	The web interface inverts its color scheme.
 \end{function}
+
 \vspace{2.0em}
 
 \begin{function}{190}{Set name of conversation}
 	\item[Use case:] Set name of conversation
 	\item[Criteria:]~\ref{RM4}
 	\item[Target:] The name of the conversation is changed.
-	\item[Postcondition failure:] The name of the conversation is not changed.
-	\item[Actors:] \hyperref[def:user]{User}
+	\item[Post-condition failure:] The name of the conversation is not changed.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user selects the rename option in the conversation menu.
 	\item[Description:] ~
 	The user selects the rename option in the conversation context menu.
-	After that, the name field of the conversation becomes editable, and the user enters the new name.
+	After that, the name field of the conversation becomes editable and the user enters the new name.
 \end{function}
+
 \vspace{2.0em}
 
 \begin{function}{200}{Delete conversation}
 	\item[Use case:] Delete conversation
 	\item[Criteria:]~\ref{RS10}
 	\item[Target:] The conversation is deleted.
-	\item[Postcondition failure:] The conversation is not deleted.
-	\item[Actors:] \hyperref[def:user]{User}
+	\item[Post-condition failure:] The conversation is not deleted.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user selects the delete option in the conversation menu.
 	\item[Description:] ~
 	The user selects the delete option in the conversation context menu.
 	The system marks the conversation as deleted and hides it from the user.
 \end{function}
+
 \vspace{2.0em}
 
 \begin{function}{210}{Change quota settings}
 	\item[Use case:] Change quota settings
 	\item[Criteria:]~\ref{RC4},~\ref{RC5}
 	\item[Target:] The quota settings are changed.
-	\item[Postcondition failure:] The quota settings are not changed.
+	\item[Post-condition failure:] The quota settings are not changed.
 	\item[Actors:] \hyperref[def:admin]{Admin}
 	\item[Trigger:] The user updates the quota values on the admin panel.
 	\item[Description:] ~
@@ -330,11 +343,13 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 \end{function}
 \vspace{2.0em}
 
+\newpage
+
 \begin{function}{220}{View analytics}
 	\item[Use case:] View analytics
 	\item[Criteria:]~\ref{RC4},~\ref{RC16}
 	\item[Target:] The analytics have been displayed.
-	\item[Postcondition failure:] The analytics were not displayed.
+	\item[Post-condition failure:] The analytics were not displayed.
 	\item[Actors:] \hyperref[def:admin]{Admin}
 	\item[Trigger:] The user visits the admin panel.
 	\item[Description:] ~
@@ -342,13 +357,15 @@ it can also be performed by all actors of higher levels (in this case, \textit{\
 \end{function}
 
 \vspace{2.0em}
+
 \begin{function}{230}{Multilingual web interface}
 	\item[Use case:] Multilingual web interface
 	\item[Criteria:]~\ref{RC6}
 	\item[Target:] The web interface is available in multiple languages (at least German and English).
-	\item[Postcondition failure:] The web interface is only available in one language.
-	\item[Actors:] \hyperref[def:guest]{Guest}
+	\item[Post-condition failure:] The web interface is only available in one language.
+	\item[Actors:] \hyperref[def:member]{Member}
 	\item[Trigger:] The user changes the language in the web interface settings.
 	\item[Description:] ~
-	The web interface supports multiple languages. Users can switch the displayed language between at least German and English through the interface settings.
+	The web interface supports multiple languages.
+	Users can switch the displayed language between at least German and English through the interface settings.
 \end{function}

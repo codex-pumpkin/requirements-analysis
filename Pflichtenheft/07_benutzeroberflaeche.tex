@@ -1,11 +1,12 @@
 %!TEX root = ../Pflichtenheft.tex
 
 \chapter{Graphical User Interface}\label{ch:ui}
-This chapter provides an overview of the \textit{\hyperref[abr:GUI]{GUI}} that is provided by the web-app of the system. \newline
+This chapter provides an overview of the \textit{\hyperref[abr:GUI]{GUI}} that is provided by the the system. \newline
 While the designed interface is detailed and has been created implementation-near, it is not indented to be a pixel-perfect replica of the interface, but rather an example of how the interface may look like.
-Aspects like spacings, texts, colors or layout choices are subject to change. \newline
+Aspects like spacing, texts, colors or layout choices are subject to change. \newline
+Sections \ref{sec:navigation}, \ref{sec:screens} and \ref{sec:modals} present screens and modals for the web-interface, while section \ref{sec:email} presents the design of the emails sent to the user.
 
-\section{Navigation}
+\section{Navigation}\label{sec:navigation}
 The user will be able to navigate around the app using a so-called \textit{Navigation Drawer} \footnote{https://m3.material.io/components/navigation-drawer/overview}. \newline
 A navigation drawer is a section of a web-app that is usually aligned on the start of the main layout (horizontally) and gives a user a list of navigation destinations to jump to. \newline
 In a scenario of a wide viewport, like a \textit{Desktop} or \textit{Tablet} device, this navigation rail will always be visible to the user. \newline
@@ -20,7 +21,7 @@ Figure~\ref{fig:ui_d_mobile_navigation_drawer_overlay} shows this overlay of the
     \label{fig:ui_d_mobile_navigation_drawer_overlay}
 \end{figure}
 
-\section{Screens}
+\section{Screens}\label{sec:screens}
 Due to the different proportions of the possible screen sizes, each screen is presented as a \textit{Desktop} and \textit{Mobile} variant.
 Whenever there is a link to a specific screen, the two variants are specified like the following: \texttt{<desktop\_variant>/<mobile\_variant>}.
 
@@ -85,7 +86,7 @@ When the request is finished, the user can either see the raw code (\ref{fig:ui_
 \end{figure}
 
 \subsection{Admin Panel}
-The admin panel (\ref{fig:ui-d-admin-panel}\ref{fig:ui-m-admin-panel}) is where admins can view analytics and update quota settings.
+The admin panel (\ref{fig:ui-d-admin-panel}/\ref{fig:ui-m-admin-panel}) is where admins can view analytics and update quota settings.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/ui/desktop/Admin_Panel_Screen}
@@ -114,25 +115,25 @@ The settings screen (\ref{fig:ui-d-settings}/\ref{fig:ui-m-settings}) is where t
     \label{fig:ui-m-settings}
 \end{figure}
 
-\subsection{Login}
-The login screen (\ref{fig:ui-d-login}/\ref{fig:ui-m-login}) allows an unauthenticated user to login by entering the credentials to an account.
+\subsection{Log-in}
+The log-in screen (\ref{fig:ui-d-login}/\ref{fig:ui-m-login}) allows an unauthenticated user to login by entering the credentials to an account.
 Users can also opt to reset their password, go to the signup screen or continue with an \textit{\hyperref[def:oauth]{OAuth} provider}.
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/ui/desktop/Login_Screen}
-    \caption{\hyperref[abr:GUI]{GUI}: Login screen}
+    \caption{\hyperref[abr:GUI]{GUI}: Log-in screen}
     \label{fig:ui-d-login}
 \end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=5cm]{figures/ui/mobile/Login_Screen}
-    \caption{\hyperref[abr:GUI]{GUI}: Login screen (mobile)}
+    \caption{\hyperref[abr:GUI]{GUI}: Log-in screen (mobile)}
     \label{fig:ui-m-login}
 \end{figure}
 
 \subsection{Request password reset}
 The request password reset allows users that lost access to their account to request a password reset.
-Users can enter the email of their account (\ref{fig:ui-d-request-reset-password-initial}/\ref{fig:ui-m-request-reset-password-initial}), and after confirming, an informative message is shown (\ref{fig:ui-d-request-reset-password-requested}/\ref{fig:ui-m-request-reset-password-requested}).
+Users can enter the email of their account (\ref{fig:ui-d-request-reset-password-initial}/\ref{fig:ui-m-request-reset-password-initial}) and after confirming, an informative message is shown (\ref{fig:ui-d-request-reset-password-requested}/\ref{fig:ui-m-request-reset-password-requested}).
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/ui/desktop/Request_Reset_Password_Screen initial}
@@ -250,16 +251,16 @@ This screen is shown after a user used the verification link in the message that
     \label{fig:ui-m-verified}
 \end{figure}
 
-\section{Modals}
+\section{Modals}\label{sec:modals}
 This section lists the modals, i.e. visual components that will be displayed as floating and over other components.
 Namely, these are \textit{Dialog}s \footnote{https://m3.material.io/components/dialogs/overview} and \textit{Menu}s \footnote{https://m3.material.io/components/menus/overview}. \newline
-These have the same layout and proportions on all screen sizes, and are therefore listed separately.
+These have the same layout and proportions on all screen sizes.
 
 \subsection{Account dialog}
 The account dialog is shown when users click the account settings button on the main screen. \newline
 It displays information about the account, like username, email and current quota progress.
 Actions like resetting the password or logging out are available. \newline
-Depending on the role of the account, a dialog for  admin (\ref{fig:ui-d-account-dialog-admin}), moderator (\ref{fig:ui-d-account-dialog-moderator}) or visitor (\ref{fig:ui-d-account-dialog-visitor}) is shown.
+Depending on the role of the account, a dialog for  admin (\ref{fig:ui-d-account-dialog-admin}) or member (\ref{fig:ui-d-account-dialog-moderator}) is shown.
 \begin{figure}
     \centering
     \includegraphics[width=5cm]{figures/ui/shared/Account_Dialog admin}
@@ -269,14 +270,8 @@ Depending on the role of the account, a dialog for  admin (\ref{fig:ui-d-account
 \begin{figure}
     \centering
     \includegraphics[width=5cm]{figures/ui/shared/Account_Dialog moderator}
-    \caption{\hyperref[abr:GUI]{GUI}: Account dialog for moderator}
+    \caption{\hyperref[abr:GUI]{GUI}: Account dialog for user}
     \label{fig:ui-d-account-dialog-moderator}
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[width=5cm]{figures/ui/shared/Account_Dialog visitor}
-    \caption{\hyperref[abr:GUI]{GUI}: Account dialog for visitor}
-    \label{fig:ui-d-account-dialog-visitor}
 \end{figure}
 
 \subsection{Change username dialog}
@@ -306,4 +301,27 @@ It allows a user to pin, rename or delete a conversation.
     \includegraphics[width=3cm]{figures/ui/shared/Conversation_Menu}
     \caption{\hyperref[abr:GUI]{GUI}: Conversation menu}
     \label{fig:ui-d-conversation-menu}
+\end{figure}
+\section{Email}\label{sec:email}
+In the following, we present the design for emails sent to the user. \newline
+Due to the similar layout on mobile screens, the email-design is only presented for desktop devices.
+
+\subsection{Password Reset Email}
+Figure \ref{fig:ui_e_reset_password} shows the email sent to the user when the password is reset.
+It contains a link to the web-interface.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/ui/email/Password_Reset_Email}
+    \caption{\hyperref[abr:GUI]{GUI}: Email for resetting password}
+    \label{fig:ui_e_reset_password}
+\end{figure}
+
+\subsection{Email Verication Email}
+Figure \ref{fig:ui_e_email_verify} shows the email sent to the user when their email needs to be verified.
+It contains a link to the web-interface.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/ui/email/Email_Verify_Email}
+    \caption{\hyperref[abr:GUI]{GUI}: Email for verifying email address}
+    \label{fig:ui_e_email_verify}
 \end{figure}

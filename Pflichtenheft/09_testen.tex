@@ -1,20 +1,75 @@
-\chapter{Testfallbeschreibungen}
-\label{chap:test}
+\chapter{Test Cases}
+\label{ch:test}
 
-Hier wird notiert, \textbf{was} und \textbf{wie} getestet wird. Dazu sollte sich an den Use-Cases und Funktionalitätsbeschreibungen orientiert werden.
+In the following, we will present functional test-cases that will be used as criteria to determine the functionality of the system, once implemented.
 
-\begin{testcase}{10}{Login}
-  \item[Getestete Funktionalität] Authentifizierung registrierter Benutzer, <Anforderung> <Use-Case>, ...
-  \item[Testform] Unit-Test. Der Unit-Test kann auch in Form einer Pipeline-Stufe mit CI/CD Workflows getestet werden ...
-  \item[Vorbedingungen] Der zum Login willige Nutzer muss bereits registriert sein. Eine Registrierung umfasst u.a. die Angabe einer E-Mail-Adresse und das Wählen eines Passworts...
-  \item[Nachbedingungen] ...
-  \item[Technik] Wie wird die Funktion getestet? Mock-Ups nötig? ...
+\begin{testcase}{10}{Authentication flow with OAuth provider}
+  \item[Product functions]~\ref{F10},~\ref{F80}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is not logged in.
+  \item[Post-condition] The user is logged in
+  \item[Execution] The user signs up via an OAuth provider (\ref{F10}), logs out (\ref{F80}) and then logs in via an OAuth provider (\ref{F10}).
 \end{testcase}
 
-\begin{testcase}{10}{Login}
-  \item[Getestete Funktionalität] Authentifizierung registrierter Benutzer, <Anforderung> <Use-Case>, ...
-  \item[Testform] Unit-Test. Der Unit-Test kann auch in Form einer Pipeline-Stufe mit CI/CD Workflows getestet werden ...
-  \item[Vorbedingungen] Der zum Login willige Nutzer muss bereits registriert sein. Eine Registrierung umfasst u.a. die Angabe einer E-Mail-Adresse und das Wählen eines Passworts...
-  \item[Nachbedingungen] ...
-  \item[Technik] Wie wird die Funktion getestet? Mock-Ups nötig? ...
+\begin{testcase}{20}{Authentication flow with credentials}
+  \item[Product functions]~\ref{F20},~\ref{F30},~\ref{F80}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is not logged in.
+  \item[Post-condition] The user is logged in
+  \item[Execution] The user signs up via credentials (\ref{F20}), logs out (\ref{F80}) and then logs in via credentials (\ref{F30}).
+\end{testcase}
+
+\begin{testcase}{30}{Updating user data}
+  \item[Product functions]~\ref{F40},~\ref{F50},~\ref{F60},~\ref{F70},~\ref{F90}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is logged in with email $e_d$, username $u_d$, password $p_d$ and profile picture $p_d$
+  \item[Post-condition] The user is logged in with email $e_n$, username $u_n$ and profile picture $p_d$
+  \item[Execution] The user changed their email (\ref{F40}) to $e_n$ and verifies it (\ref{F50}).
+    After that, the user resets their password (\ref{F60}) to $p_n$, username (\ref{F70}) to $u_n$ and profile picture (\ref{F90}) to $p_n$.
+\end{testcase}
+
+\begin{testcase}{40}{Making a request}
+  \item[Product functions]~\ref{F100},~\ref{F110},~\ref{F120},~\ref{F170}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is logged in and has available quota
+  \item[Post-condition] The user is logged in, a request was created, the quota of the user has been decremented and the file has been exported.
+  \item[Execution] The user selects the respective language model (\ref{F120}) and the target language (\ref{F110}).
+    After that, the user makes the request (\ref{F100}). In the end, the user exports the code (\ref{F170}).
+\end{testcase}
+
+\begin{testcase}{50}{Manipulating language models}
+  \item[Product functions]~\ref{F130},~\ref{F140}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is logged in and has initially the language models $m_1 = (name_1, url_1)$ and $m_2 = (name_2, url_2)$
+  \item[Post-condition] The user is logged in and has the language models $m_2 = (name_2, \hat{url_2})$ and $m_3 = (name_3, url_3)$
+  \item[Execution] The user deletes the model $m_1$ (\ref{F140}).
+    After that, the user updates the url of the language model $m_2$ from $url_2$ to $\hat{url_2}$ (\ref{F130}).
+    Then, the user adds the language model $m_3 = (name_3, url_3)$.
+\end{testcase}
+
+\begin{testcase}{60}{Manipulating conversations}
+  \item[Product functions]~\ref{F150},~\ref{F160},~\ref{F190},~\ref{F200}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is logged in and has the conversations $c_1 = (n_1)$, $c_2 = (n_2)$, $c_3 = (n_3)$, of which $c_3$ is pinned.
+  \item[Post-condition] The user is logged in and has the conversations $c_1 = (\hat{n_1})$, $c_2 = (n_2)$, of which $c_2$ is pinned.
+  \item[Execution] The user renames conversation $c_1$ to $\hat{n_1}$ (\ref{F190}).
+    After that, the user pins $c_2$ (\ref{F150}).
+    Then, the user deletes $c_3$ (\ref{F200}).
+\end{testcase}
+
+\begin{testcase}{70}{Admin actions}
+  \item[Product functions]~\ref{F210},~\ref{F220}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is logged in as an admin and the current quota settings are $c = (c_1, c_2, c_3)$
+  \item[Post-condition] The user is logged in as an admin and the current quota settings are $c = (\hat{c_1}, c_2, \hat{c_3})$
+  \item[Execution] The user reads the current analytics (\ref{F220}).
+    The, the user changes the quota settings to $c = (\hat{c_1}, c_2, \hat{c_3})$.
+\end{testcase}
+
+\begin{testcase}{80}{Change theme and language}
+  \item[Product functions]~\ref{F180},~\ref{F230}
+  \item[Type of test] Functional test
+  \item[Precondition] The user is logged, the current theme is dark and the current language is \textit{German}.
+  \item[Post-condition] The user is logged in, the current theme is light and the language of the user interface is \textit{English}.
+  \item[Execution] The user toggles the theme (\ref{F180}) and changes its browser language settings to \textit{English} (\ref{F230}).
 \end{testcase}
